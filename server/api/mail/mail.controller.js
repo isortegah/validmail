@@ -11,18 +11,22 @@
  */
 'use strict';
 
+
+
 var _ = require('lodash');
 //var Mail = require('./mail.model');
 
 // Get list of mails
 exports.index = function(req, res) {
 
-    return res.status(200).json({hola:"prueba correcta"});
+
+    //return res.status(200).json({hola:"prueba correcta"});
 
 };
 
 exports.create = function(req, res) {
-    console.log(req)
+    console.log(req.fields)
+    console.log(req.files)
     return res.status(200).json(req.body);
 }
 

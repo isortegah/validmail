@@ -13,6 +13,7 @@
     "express": "~4.9.0",
     "express-jwt": "^3.0.0",
     "express-session": "~1.0.2",
+    "formidable": "^1.0.17",
     "imagemin-jpegtran": "^4.3.0",
     "imagemin-optipng": "^4.3.0",
     "jsonwebtoken": "^5.0.0",

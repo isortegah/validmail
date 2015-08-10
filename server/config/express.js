@@ -32,6 +32,30 @@ module.exports = function(app) {
   app.use(cookieParser());
   app.use(passport.initialize());
 
+  app.route('*').all(function(req, res, next){
+    var ref$, form;
+    if ((ref$ = req.method.toLowerCase()) === 'post' || ref$ === 'put' || ref$ === 'patch' || ref$ === 'delete') {
+      form = new formidable.IncomingForm();
+      form.hash = 'md5';
+      form.multiples = true;
+      form.parse(req, function(err, fields, files){
+        if (err != null) {
+          console.error('formidable:parse ' + err);
+          return res.status(500).send('upload error.');
+        } else {
+          req.fields = fields;
+          req.files = files;
+          return console.log('parsed.');
+        }
+      });
+      form.on('end', function(){
+        return next();
+      });
+    } else {
+      return next();
+    }
+  });
+
   // Persist sessions with mongoStore
   // We need to enable sessions for passport twitter because its an oauth 1.0 strategy
   app.use(session({
