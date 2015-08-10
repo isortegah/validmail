@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/validmail-dev'
+    uri: 'mongodb://cf:cf@ds041851.mongolab.com:41851/corpfolder'
   },
 
   seedDB: true

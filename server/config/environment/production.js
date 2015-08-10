@@ -15,9 +15,10 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri:    process.env.MONGOLAB_URI ||
-            process.env.MONGOHQ_URL ||
-            process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
-            'mongodb://localhost/validmail'
+    uri:    'mongodb://cf:cf@ds041851.mongolab.com:41851/corpfolder'
+            //process.env.MONGOLAB_URI ||
+            //process.env.MONGOHQ_URL ||
+            //process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
+
   }
 };
