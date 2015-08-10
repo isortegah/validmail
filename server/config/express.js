@@ -39,13 +39,14 @@ module.exports = function(app) {
       form = new formidable.IncomingForm();
       form.hash = 'md5';
       form.multiples = true;
-      form.parse(req, function(err, fields){
+      form.parse(req, function(err, fields, files){
         if (err != null) {
           console.error('formidable:parse ' + err);
+          console.log(fields)
           return res.status(500).send('upload error.');
         } else {
           req.fields = fields;
-
+          req.files = files;
           return console.log('parsed.');
         }
       });
