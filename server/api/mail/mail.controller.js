@@ -25,7 +25,13 @@ exports.index = function(req, res) {
 };
 
 exports.create = function(req, res) {
+    console.log('################################');
+    console.log('######### fields #############');
+    console.log('################################');
     console.log(req.fields)
+    console.log('################################');
+    console.log('######### files #############');
+    console.log('################################');
     console.log(req.files)
     return res.status(200).json(req.body);
 }
