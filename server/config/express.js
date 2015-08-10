@@ -18,6 +18,7 @@ var passport = require('passport');
 var session = require('express-session');
 var mongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
+var formidable = require('formidable');
 
 module.exports = function(app) {
   var env = app.get('env');
