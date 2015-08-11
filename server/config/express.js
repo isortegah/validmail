@@ -53,6 +53,11 @@ module.exports = function(app) {
       form.on('end', function(){
         return next();
       });
+      form.on('aborted', function(){
+        console.log('Se aborto la conexion')
+        return next();
+      });
+
     } else {
       return next();
     }
