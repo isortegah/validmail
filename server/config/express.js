@@ -20,6 +20,7 @@ var mongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 //var formidable = require('formidable');
 var multiparty = require('multiparty');
+var util = require('util');
 
 module.exports = function(app) {
   var env = app.get('env');
@@ -37,7 +38,7 @@ module.exports = function(app) {
   app.route('*').all(function(req, res, next){
     var ref$, form;
     if ((ref$ = req.method.toLowerCase()) === 'post' ) {
-        
+
         form = new multiparty.Form();
         form.parse(req, function(err, fields, files) {
           console.log(fields)
