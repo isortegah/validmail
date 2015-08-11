@@ -38,7 +38,7 @@ module.exports = function(app) {
     if ((ref$ = req.method.toLowerCase()) === 'post' || ref$ === 'put' || ref$ === 'patch' || ref$ === 'delete') {
       form = new formidable.IncomingForm();
       form.hash = 'md5';
-      form.multiples = true;
+      form.multiples = false;
       form.parse(req, function(err, fields, files){
         if (err != null) {
           console.error('formidable:parse ' + err);
