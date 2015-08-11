@@ -18,7 +18,8 @@ var passport = require('passport');
 var session = require('express-session');
 var mongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
-var formidable = require('formidable');
+//var formidable = require('formidable');
+var multiparty = require('multiparty');
 
 module.exports = function(app) {
   var env = app.get('env');
@@ -34,6 +35,22 @@ module.exports = function(app) {
   app.use(passport.initialize());
 
   app.route('*').all(function(req, res, next){
+    var ref$, form;
+    if ((ref$ = req.method.toLowerCase()) === 'post' ) {
+        
+        form = new multiparty.Form();
+        form.parse(req, function(err, fields, files) {
+          console.log(fields)
+        res.writeHead(200, {'content-type': 'text/plain'});
+        res.write('received upload:\n\n');
+        res.end(util.inspect({fields: fields, files: files}));
+      });
+      return;
+    }
+
+    });
+
+  /*app.route('*').all(function(req, res, next){
     var ref$, form;
     if ((ref$ = req.method.toLowerCase()) === 'post' || ref$ === 'put' || ref$ === 'patch' || ref$ === 'delete') {
       form = new formidable.IncomingForm();
@@ -61,7 +78,7 @@ module.exports = function(app) {
     } else {
       return next();
     }
-  });
+  });*/
 
   // Persist sessions with mongoStore
   // We need to enable sessions for passport twitter because its an oauth 1.0 strategy

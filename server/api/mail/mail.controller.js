@@ -33,7 +33,7 @@ exports.create = function(req, res) {
     console.log('######### files #############');
     console.log('################################');
     console.log(req.files)
-    return res.status(200).json(req.body);
+    return res.status(200);
 }
 
 function handleError(res, err) {
