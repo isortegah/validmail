@@ -28,11 +28,8 @@ exports.create = function(req, res) {
     console.log('################################');
     console.log('######### fields #############');
     console.log('################################');
-    console.log(req.fields)
-    console.log('################################');
-    console.log('######### files #############');
-    console.log('################################');
-    console.log(req.files)
+    console.log(req)
+    
     return res.status(200);
 }
 

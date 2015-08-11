@@ -5,11 +5,13 @@
 
 var express = require('express');
 var controller = require('./mail.controller');
+var bodyParser = require('body-parser')
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var router = express.Router();
 
 router.get('/', controller.index);
-//router.post('/', controller.create);
+router.post('/',urlencodedParser, controller.create);
 /*router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);

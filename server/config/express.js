@@ -18,8 +18,7 @@ var passport = require('passport');
 var session = require('express-session');
 var mongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
-var inspect = require('util').inspect;
-var Busboy = require('busboy');
+
 
 module.exports = function(app) {
   var env = app.get('env');
@@ -34,10 +33,6 @@ module.exports = function(app) {
   app.use(cookieParser());
   app.use(passport.initialize());
 
-  app.route('*').all(function(req, res, next){
-    var busboy = new Busboy({ headers: req.headers });
-    console.log(req.headers);
-  });
 
   /*app.route('*').all(function(req, res, next){
     var ref$, form;
