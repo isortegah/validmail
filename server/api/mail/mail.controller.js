@@ -11,10 +11,8 @@
  */
 'use strict';
 
-
-
 var _ = require('lodash');
-//var Mail = require('./mail.model');
+var Mail = require('./mail.model');
 
 // Get list of mails
 exports.index = function(req, res) {
@@ -25,14 +23,32 @@ exports.index = function(req, res) {
 };
 
 exports.create = function(req, res) {
-    console.log('################################');
-    console.log('######### fields #############');
-    console.log('################################');
-    console.log(req)
-    
-    return res.status(200);
+
+    var body = req.body;
+    var data = {
+        tipo : getTipoMail(req.body['body-plain']),
+        bodyhtml : req.body['body-html'],
+        bodyplain : req.body['body-plain'],
+        estado: true
+    }
+    Mail.create(data, function(err, mail){
+        if (err) { return handleError(res, err);}
+        console.log(mail);
+        return  res.status(201);
+    })
+
+}
+
+function getTipoMail (text){
+    //console.log(text);
+    var tipoMail;
+    if(text.indexOf('completar tu registro') > -1 )
+        tipoMail = 'registro';
+    return tipoMail;
+
 }
 
 function handleError(res, err) {
+    console.log(err);
     return res.status(500).send(err);
 }
